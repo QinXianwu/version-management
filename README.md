@@ -37,3 +37,19 @@
 - `npm version major/minor/patch` 更新版本号
 - `git branch -D fix` 删除本地
 - `git push origin --delete fix` 删除远程
+
+
+## 例子：
+
+- 步骤一：在 dev 分支 commit 若干次
+- 步骤二：准备预发布版本，在 dev 上创建 pre 分支，执行 npm version prerelease 命令
+- 步骤三：预发布版本发现 bug，直接在 pre 分支上修复，提交 commit
+- 步骤四：dev 分支继续开发新功能，提交 commit
+- 步骤五：预发布版本完成了测试，可以直接发布了，切换到 master 分支，合并 pre 分支内容 git merge pre，删除 pre 分支，git branch -d pre
+- 步骤六：在 master 分支上执行版本修改命令，根据版本更新的内容判断更新主次小版本，npm version major/minor/patch
+- 步骤七：完成 master 分支发布，切换回 dev 分支，dev 分支合并 master 分支的内容 git merge master （这时候可能需要做人工合并冲突）
+- 步骤八：继续在 dev 分支上进行新功能开发。提交若干个 commit
+- 步骤九：此时 master 分支上出现 bug，需要紧急修复，在 master 分支上创建 fix 分支
+- 步骤十：在 fix 分支上修复了 bug 后，执行 npm version prerelease 命令，准备预发布
+- 步骤十一：测试无 bug 后，将 fix 分支的内容合并到 master 分支，git merge fix，更新版本后发布，删除 fix 分支，git branch -d fix ,并且更新本版 npm version major/minor/patch
+- 步骤十二：回到 dev 分支，合并 master 分支的内容，继续开发，git merge master （这时候可能需要做人工合并冲突）
