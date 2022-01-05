@@ -13,4 +13,7 @@
  - 在添加新功能时`拉取最新master分支`下来进行添加，添加完成需要测试就`提交到pre预发布分支`
 ### pre 预发布分支
  - 在 dev 上创建pre分支，执行 npm version prerelease 命令
- - 测试过程中出现的bug，全部在pre分支上修复，测试完成提交到master分支后删除该pre分支
+ - 测试过程中出现的bug，全部在pre分支上修复，测试完成提交到master分支后删除该pre分支 
+ - 先到 master 分支进行合并 `git merge pre` 后再删除
+ - `git branch -D pre` 删除本地
+ - `git push origin --delete pre` 删除远程
